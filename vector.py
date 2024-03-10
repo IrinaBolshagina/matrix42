@@ -16,6 +16,15 @@ class Vector:
     # A function to reshape a vector into a matrix
     def reshape(self):
         return(Matrix(self.vect))
+    
+    def __str__(self):
+        str_list = ['['+ str(v) + ']' for v in self.vect]
+        return('\n'.join(str_list))
+    
+    def __add__(self, v):
+        assert len(self.vect) == len(v.vect), "ValueError: can only add vectors that have equal lenghth"
+        sum_vect = [self.vect[i]+v.vect[i] for i in range(len(self.vect))]
+        return Vector(sum_vect)
 
 
 
