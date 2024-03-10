@@ -11,20 +11,40 @@ class Vector:
     
     # A function to print a vector on the standard output
     def print(self):
-        print(self.vect)
+        print(self)
     
     # A function to reshape a vector into a matrix
     def reshape(self):
         return(Matrix(self.vect))
-    
+
+    # Print overload
     def __str__(self):
         str_list = ['['+ str(v) + ']' for v in self.vect]
         return('\n'.join(str_list))
     
-    def __add__(self, v):
-        assert len(self.vect) == len(v.vect), "ValueError: can only add vectors that have equal lenghth"
-        sum_vect = [self.vect[i]+v.vect[i] for i in range(len(self.vect))]
+    # operator+ overload
+    def __add__(self, other):
+        assert isinstance(other, Vector), "ValueError: can only add vector type"
+        assert len(self.vect) == len(other.vect), "ValueError: can only add vectors that have equal lenghth"
+        sum_vect = [self.vect[i]+other.vect[i] for i in range(len(self.vect))]
         return Vector(sum_vect)
+    
+    # operator- overload
+    def __sub__(self, other):
+        assert isinstance(other, Vector), "ValueError: can only substract vector type"
+        assert len(self.vect) == len(other.vect), "ValueError: can only substract vectors that have equal lenghth"
+        sub_vect = [self.vect[i]-other.vect[i] for i in range(len(self.vect))]
+        return Vector(sub_vect)
+
+    # operator* overload    
+    def __mul__(self, other):
+        mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
+        return Vector(mul_vect)
+    
+    # reversed operator* overload
+    def __rmul__(self, other):
+        mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
+        return Vector(mul_vect)
 
 
 

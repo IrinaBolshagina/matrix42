@@ -15,3 +15,5 @@ print(np.add(y,z))
 
 m = np.matrix([[1, 2], [3, 4]])
 print(m)
+
+print(y*z)
