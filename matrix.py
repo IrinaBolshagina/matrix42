@@ -5,16 +5,22 @@ class Matrix:
     rows = 0
     columns = 0
 
-    # Usage: m = Matrix([[1, 2], [3, 4]])
+    # Usage: m = Matrix([[1, 2], [3, 4]]) or m = Matrix([v1, v2, v3])
     def __init__(self, matr: list):
        
         # if type(matr[0]) is list:
-        self.matr = matr
-        self.rows = len(self.matr)
-        try:
-            self.columns = len(self.matr[0]) # one-dimentional matrix
-        except:
-            columns = 0
+        # if isinstance(matr[0], Vector) = 
+        
+        if isinstance(matr[0], list):
+            for row in matr:
+                v = Vector(row) # use zip to reverse matrix
+
+        # self.matr = matr
+        # self.rows = len(self.matr)
+        # try:
+        #     self.columns = len(self.matr[0]) # one-dimentional matrix
+        # except:
+        #     columns = 0
 
     
     # A function to return the shape of a matrix
