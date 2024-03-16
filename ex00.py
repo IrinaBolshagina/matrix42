@@ -1,4 +1,5 @@
 from vector import Vector
+from matrix import Matrix
 
 
 if __name__ == '__main__':
@@ -22,3 +23,8 @@ if __name__ == '__main__':
 
     print('vector1*2=')
     print(2*v1, '\n')
+
+    m1 = Matrix([[1,2,0,1], [1,2,1,0]])
+    print(m1)
+    m1.print()
+    print(m1.shape())
