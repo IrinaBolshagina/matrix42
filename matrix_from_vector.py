@@ -8,15 +8,15 @@ class Matrix:
     # Usage: m = Matrix([[1, 2], [3, 4]]) or m = Matrix([v1, v2, v3])
     def __init__(self, matr: list):
 
+        self.rows = len(matr)
+
         if isinstance(matr[0], Vector):
             self.matr = [row.vect for row in matr]
             self.vectors = Vector([row for row in matr])
-            self.columns = len(matr[0])
-
-        self.matr = matr
-        self.rows = len(matr)
+            self.columns = matr[0].size()
         
-        if isinstance(matr[0], list):
+        elif isinstance(matr[0], list):
+            self.matr = matr
             self.vectors = Vector([Vector(row) for row in matr])
             self.columns = len(matr[0])
             # for row in matr:
@@ -54,11 +54,10 @@ class Matrix:
     def __add__(self, other):
         assert isinstance(other, Matrix), "ValueError: can only add matrix type"
         assert self.shape() == self.shape(), "ValueError: can only add matrice that have equal shape"
-        sum_matr = self.vectors
-        print(self.vectors)
+        sum_matr = []
         for i in range(self.rows):
-            sum_matr[i] = self.vectors[i] + other.vectors[i]
-        return Matrix(sum_matr)
+            sum_matr.append((self.vectors[i] + other.vectors[i]))
+        return(Matrix(sum_matr))
     
     
     # A function to reshape a matrix into a vector

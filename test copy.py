@@ -40,4 +40,4 @@ if __name__ == '__main__':
     print('\n------- matrix addidtion -------\n')
     print("matrix1 + matrix2 = ")
     m = m1+m2
-    # print(m)
+    print(m)
