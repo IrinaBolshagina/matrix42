@@ -1,4 +1,4 @@
-from vector_from_matrix import Vector
+from vector import Vector
 from matrix import Matrix
 
 
@@ -19,17 +19,21 @@ if __name__ == '__main__':
 
     print('\n------- vectors addidtion -------\n')
 
-    # print('vector1+vector2=')
-    # print(v1+v2,'\n')
+    print('vector1+vector2=')
+    print(v1+v2,'\n')
 
-    # print('vector1-vector2=')
-    # print(v1-v2, '\n')
+    print('vector1-vector2=')
+    print(v1-v2, '\n')
 
-    # print('vector1*2=')
-    # print(2*v1, '\n')
+    print('vector1*2=')
+    print(2*v1, '\n')
 
-    m1 = Matrix([1,2,0,1])
+    m1 = Matrix([[1,2,0,1]])
     m2 = Matrix([[1,2,0,1], [0,0,0,0]])
     print(m1)
     m2.print()
     print(m1.shape())
+
+    import scipy.interpolate
+    y_interp = scipy.interpolate.interp1d(1, 2)
+    print(y_interp(0.5))

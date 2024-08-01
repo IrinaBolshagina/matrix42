@@ -1,5 +1,5 @@
 from vector import Vector
-from matrix import Matrix
+from matrix_from_vector import Matrix
 
 
 if __name__ == '__main__':
@@ -28,3 +28,4 @@ if __name__ == '__main__':
     print(m1)
     m1.print()
     print(m1.shape())
+    m3 = 2*m1
