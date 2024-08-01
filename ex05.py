@@ -3,6 +3,9 @@ from vector import angle_cos
 
 
 if __name__ == '__main__':
+
+    print("\nCosine of the angle between vectors: \n")
+
     v1 = Vector([1, 0])
     v2 = Vector([1, 0])
     print("angle_cos([1, 0], [1, 0]) = ")
@@ -28,7 +31,9 @@ if __name__ == '__main__':
     print("angle_cos([1, 2, 3], [4, 5, 6]) = ")
     print(angle_cos(v9, v10), '\n')
 
-    print("------------- bonus -------------\n")
+    print("------------- bonus -------------")
+    print("Operations for complex numbers: \n")
+
     v11 = Vector([1.0 + 2.2j, 2.0 + 3.9j, 3.0 + 4.0j])
     v12 = Vector([2.0 + 1.0j, 3.0 + 2.6j, 4.7 + 3.2j])
     print("angle_cos([1.0 + 2.2j, 2.0 + 3.9j, 3.0 + 4.0j], [2 + 1j, 3 + 2j, 4 + 3j]) = ")

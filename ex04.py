@@ -3,7 +3,9 @@ from vector import norm_1, norm, norm_inf
 
 
 if __name__ == '__main__':
-    print()
+
+    print("\nTypes of norms for vectors: \n")
+    
     v1 = Vector([0,0,0])
     print("for vector = ")
     print(v1)
@@ -26,6 +28,6 @@ if __name__ == '__main__':
 
     print("------------- bonus -------------\n")
     v5 = Vector([1.0 + 2.2j, 2.0 + 3.9j, 3.0 + 4.0j])
-    print("for vector = ")
+    print("for vector of complex numbers ")
     print(v5)
     print(f"norm_1 = {norm_1(v5)}, norm = {norm(v5)}, norm_inf = {norm_inf(v5)}\n") # 10.1, 6.0, 3.0

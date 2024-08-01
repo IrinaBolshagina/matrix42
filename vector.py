@@ -49,32 +49,19 @@ class Vector:
         sub_vect = [self.vect[i]-other.vect[i] for i in range(len(self.vect))]
         return Vector(sub_vect)
 
-    # Operator* overload for scalar and dot product   
+    # Operator* overload for scalar   
     def __mul__(self, other):
-        
-        #multiplication to scalar
-        if isinstance(other, type(self.vect[0])):
-            mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
-            return Vector(mul_vect)
-        
-        #dot product
-        elif isinstance(self, type(other)):
-            if self.size() != other.size():
-                raise ValueError("Two vectors must be of the same dimension to calculate dot product")
-            dot = sum([self.vect[i]*other.vect[i] for i in range(len(self.vect))])
-            return dot
-        # else:
-        #     raise ValueError("Vector and scalar must have the same data type for multiplication")
-
-    
-    # Reversed operator* overload
-    def __rmul__(self, other):
-        if not isinstance(other, type(self.vect[0])):
-            raise ValueError("Vector and scalar must have the same data type for multiplication")
         mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
         return Vector(mul_vect)
 
     
+    # Reversed operator* overload
+    def __rmul__(self, other):
+        mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
+        return Vector(mul_vect)
+
+    
+# Linear combination of vectors [v1, v2, ...] and scalars [a1, a2, ...]
 # a1*v1 + a2*v2 + a3*v3 + ...
 def linear_combination(list_vect, list_scal):
     res = 0
@@ -86,6 +73,8 @@ def linear_combination(list_vect, list_scal):
     return(res)
 
 
+# dot product of two vectors
+# a*b = a1*b1 + a2*b2 + a3*b3 + ...
 def dot(v1, v2):
     if v1.size() != v2.size():
         raise ValueError("Two vectors must be of the same dimension to calculate dot product")
@@ -93,7 +82,7 @@ def dot(v1, v2):
     return dot
 
 
-# linear_interpolation
+# linear_interpolation 
 def lerp(point1, point2, t):
     # check point1, point2 are of the same type
     # check if t is a scalar 
@@ -103,8 +92,6 @@ def lerp(point1, point2, t):
 
 # manhattan norm p(x) = |x1| + |x2| + ... + |xn|
 def norm_1(vect):
-    # for v in vect:
-    #     print(v)
     return sum(abs(v) for v in vect).real
 
 
@@ -113,15 +100,21 @@ def norm(vect):
     return (sum(v*v for v in vect) ** 0.5).real
 
 
-# supremum norm 
+# supremum norm p(x) = max(|x1|, |x2|, ..., |xn|)
 def norm_inf(vect):
     return max(abs(v) for v in vect).real
 
 
+# cosine of the angle between two vectors: cos(theta) = (v1 * v2) / (||v1|| * ||v2||)
 def angle_cos(v1, v2):
     cos = dot(v1,v2) / (norm(v1) * norm(v2))
-    
     if type(cos) == float:
         return round(cos, 9) # this is to avoid floating point errors
     else:
         return cos
+    
+
+# cross product of two vectors in 3D space
+def cross_product(v1, v2):
+    cross = [v1[1]*v2[2] - v1[2]*v2[1], v1[2]*v2[0] - v1[0]*v2[2], v1[0]*v2[1] - v1[1]*v2[0]]
+    return Vector(cross)
