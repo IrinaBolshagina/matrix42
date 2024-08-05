@@ -1,13 +1,13 @@
 # check if the input is a list
-# check if all the elements in the list are of the same type
 
-# import math
-# import cmath
+def check_vector(vect):
+    assert isinstance(vect, list), "ValueError: input must be a list"
 
 class Vector:
     
     # Usage: v = Vector([1,2])
     def __init__(self, vect):
+        check_vector(vect)
         self.vect = vect.copy()
     
     # A function to return the size of a vector
@@ -29,23 +29,16 @@ class Vector:
 
     # Print overload
     def __str__(self):
-        if isinstance(self.vect[0], float):
-            str_list = ['['+ str('%.1f' % v) + ']' for v in self.vect]
-        else:
-            str_list = ['['+ str(v) + ']' for v in self.vect]
+        str_list = ['['+ str(v) + ']' for v in self.vect]
         return('\n'.join(str_list))
     
     # Operator+ overload
     def __add__(self, other):
-        if not isinstance(other, Vector) or self.size() != other.size():
-            raise ValueError("Can only add two vectors of the same demention")
         sum_vect = [self.vect[i]+other.vect[i] for i in range(len(self.vect))]
         return Vector(sum_vect)
     
     # Operator- overload
     def __sub__(self, other):
-        if not isinstance(other, Vector) or self.size() != other.size():
-            raise ValueError("Can only substract vectors of the same demention")
         sub_vect = [self.vect[i]-other.vect[i] for i in range(len(self.vect))]
         return Vector(sub_vect)
 
@@ -54,11 +47,28 @@ class Vector:
         mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
         return Vector(mul_vect)
 
-    
     # Reversed operator* overload
     def __rmul__(self, other):
         mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
         return Vector(mul_vect)
+    
+    # dot product of two vectors
+    # a*b = a1*b1 + a2*b2 + a3*b3 + ...
+    def dot(self, other):
+        dot = sum(self.vect[i]*other.vect[i] for i in range(len(self.vect)))
+        return dot
+    
+    # manhattan norm p(x) = |x1| + |x2| + ... + |xn|
+    def norm_1(self):
+        return sum(abs(v) for v in self.vect).real
+
+    # euclidean norm p(x) = sqrt(x1^2 + x2^2 + ... + xn^2)
+    def norm(self):
+        return (sum(v*v for v in self.vect) ** 0.5).real
+
+    # supremum norm p(x) = max(|x1|, |x2|, ..., |xn|)
+    def norm_inf(self):
+        return max(abs(v) for v in self.vect).real
 
     
 # Linear combination of vectors [v1, v2, ...] and scalars [a1, a2, ...]
@@ -73,15 +83,6 @@ def linear_combination(list_vect, list_scal):
     return(res)
 
 
-# dot product of two vectors
-# a*b = a1*b1 + a2*b2 + a3*b3 + ...
-def dot(v1, v2):
-    if v1.size() != v2.size():
-        raise ValueError("Two vectors must be of the same dimension to calculate dot product")
-    dot = sum(v1.vect[i]*v2.vect[i] for i in range(len(v1.vect)))
-    return dot
-
-
 # linear_interpolation 
 def lerp(point1, point2, t):
     # check point1, point2 are of the same type
@@ -90,24 +91,9 @@ def lerp(point1, point2, t):
     return (1.0 - t) * point1 + t * point2
 
 
-# manhattan norm p(x) = |x1| + |x2| + ... + |xn|
-def norm_1(vect):
-    return sum(abs(v) for v in vect).real
-
-
-# euclidean norm p(x) = sqrt(x1^2 + x2^2 + ... + xn^2)
-def norm(vect):
-    return (sum(v*v for v in vect) ** 0.5).real
-
-
-# supremum norm p(x) = max(|x1|, |x2|, ..., |xn|)
-def norm_inf(vect):
-    return max(abs(v) for v in vect).real
-
-
 # cosine of the angle between two vectors: cos(theta) = (v1 * v2) / (||v1|| * ||v2||)
 def angle_cos(v1, v2):
-    cos = dot(v1,v2) / (norm(v1) * norm(v2))
+    cos = v1.dot(v2) / (v1.norm() * v2.norm())
     if type(cos) == float:
         return round(cos, 9) # this is to avoid floating point errors
     else:
