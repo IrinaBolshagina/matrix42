@@ -9,48 +9,58 @@ class Vector:
     def __init__(self, vect):
         check_vector(vect)
         self.vect = vect.copy()
+
     
     # A function to return the size of a vector
     def size(self):
         return len(self.vect)
     
+    
     # A function to print a vector on the standard output
     def print(self):
         print(self)
+
     
     # A function to reshape a vector into a matrix
     def reshape(self):
         from matrix import Matrix
         return(Matrix(self.vect))
     
+    
     # Operator[] overoad
     def __getitem__(self, key):
         return self.vect[key]
+    
 
     # Print overload
     def __str__(self):
-        str_list = ['['+ str(v) + ']' for v in self.vect]
+        str_list = ['['+ str(round(x, 9) if isinstance(x, float) else x) + ']' for x in self.vect]
         return('\n'.join(str_list))
+    
     
     # Operator+ overload
     def __add__(self, other):
         sum_vect = [self.vect[i]+other.vect[i] for i in range(len(self.vect))]
         return Vector(sum_vect)
     
+    
     # Operator- overload
     def __sub__(self, other):
         sub_vect = [self.vect[i]-other.vect[i] for i in range(len(self.vect))]
         return Vector(sub_vect)
+    
 
     # Operator* overload for scalar   
     def __mul__(self, other):
         mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
         return Vector(mul_vect)
+    
 
     # Reversed operator* overload
     def __rmul__(self, other):
         mul_vect = [self.vect[i]*other for i in range(len(self.vect))]
         return Vector(mul_vect)
+    
     
     # dot product of two vectors
     # a*b = a1*b1 + a2*b2 + a3*b3 + ...
@@ -58,18 +68,21 @@ class Vector:
         dot = sum(self.vect[i]*other.vect[i] for i in range(len(self.vect)))
         return dot
     
+    
     # manhattan norm p(x) = |x1| + |x2| + ... + |xn|
     def norm_1(self):
-        return sum(abs(v) for v in self.vect).real
+        return round(sum(abs(v) for v in self.vect).real, 9)
+    
 
     # euclidean norm p(x) = sqrt(x1^2 + x2^2 + ... + xn^2)
     def norm(self):
-        return (sum(v*v for v in self.vect) ** 0.5).real
+        return round((sum(v*v for v in self.vect) ** 0.5).real, 9)
+    
 
     # supremum norm p(x) = max(|x1|, |x2|, ..., |xn|)
     def norm_inf(self):
-        return max(abs(v) for v in self.vect).real
-
+        return round(max(abs(v) for v in self.vect).real, 9)
+    
     
 # Linear combination of vectors [v1, v2, ...] and scalars [a1, a2, ...]
 # a1*v1 + a2*v2 + a3*v3 + ...
