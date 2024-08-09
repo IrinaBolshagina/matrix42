@@ -115,5 +115,7 @@ def angle_cos(v1, v2):
 
 # cross product of two vectors in 3D space
 def cross_product(v1, v2):
+    if v1.size() != 3 or v2.size()!= 3:
+        raise ValueError("Vectors must be 3-dimentional")
     cross = [v1[1]*v2[2] - v1[2]*v2[1], v1[2]*v2[0] - v1[0]*v2[2], v1[0]*v2[1] - v1[1]*v2[0]]
     return Vector(cross)

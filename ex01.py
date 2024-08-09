@@ -26,5 +26,5 @@ if __name__ == '__main__':
     v7 = Vector([2.0 + 1.0j, 3.0 + 2.6j])
     a = [10.0 + 2.0j, -2.0 + 1.0j]
 
-    print("\nLinear combination of vectors ([1.0 + 2.2j, 2.0 + 3.9j] and [2 + 1j, 3 + 2j] and scalars [10,-2] = )\n")
+    print("\nLinear combination of vectors ([1.0 + 2.2j, 2.0 + 3.9j] and [2 + 1j, 3 + 2j] and scalars [10,-2] = \n")
     print(linear_combination([v6,v7], a), '\n')

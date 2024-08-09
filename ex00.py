@@ -48,6 +48,11 @@ if __name__ == '__main__':
     print("Operations for complex numbers: \n")
     v1 = Vector([1.0 + 2.2j, 2.0 + 3.9j, 3.0 + 4.0j])
     v2 = Vector([2.0 + 1.0j, 3.0 + 2.6j, 4.7 + 3.2j])
+
+    m1 = Matrix([[1.0 + 2.2j, 2.0 + 3.9j],
+                [3.0 + 4.0j, 4.0 + 5.0j]])
+    m2 = Matrix([[1.0 + 1.0j, 5.0 - 2.0j],
+                [0.0 + 0.0j, 2.0 - 3.0j]])
     
     print("v1 = ")
     print(v1, '\n')
@@ -62,3 +67,9 @@ if __name__ == '__main__':
 
     print("v1 * (2.0 + 3.0j) = ")
     print(v1 * (2.0 + 3.0j), '\n')
+
+    print("m1 = ")
+    print(m1, '\n')
+
+    print("m1 * 2 = ")
+    print(m1 * 2, '\n')
