@@ -177,7 +177,7 @@ class Matrix:
         adj = [[0 for i in range(self.cols_num)] for j in range(self.rows_num)]
         for i in range(self.rows_num):
             for j in range(self.cols_num):
-                adj[i][j] = ((-1)**(i+j)) * self.minor(i, j).det()
+                adj[j][i] = ((-1)**(i+j)) * self.minor(i, j).det()
         adj = [[abs(x) if x == -0.0 else x for x in row] for row in adj]
         return Matrix(adj)
         
